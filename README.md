@@ -32,3 +32,34 @@ All buttons go to Selar:
 ## Swapping an image
 
 Replace the file in `assets/` keeping the same filename. No HTML edit needed.
+
+---
+
+## The free devotional funnel
+
+Two extra pages:
+
+- `devotion/index.html` → `https://evelynmillers.github.io/devotion/` — email capture
+- `devotion/sent/index.html` → `https://evelynmillers.github.io/devotion/sent/` — confirmation + one-hour offer
+
+### To make it work
+
+1. **Pick an email service** (MailerLite or Kit are both free at this volume).
+2. In `devotion/index.html`, replace `EMAIL_SERVICE_FORM_URL` with that service's
+   form POST endpoint. The field is already named `email`.
+3. In the service, set the automation to send the devotional PDF on signup, and
+   set the post-signup redirect to `https://evelynmillers.github.io/devotion/sent/`.
+4. In `devotion/sent/index.html`, set the real offer: the price (`$6.99`), the
+   struck price, and the coupon code (`DEVOTION30`).
+5. **Create that coupon on Selar with a real expiry or a capped number of uses.**
+   The page tells people the price ends in an hour. If the code still works a week
+   later, the page is lying.
+
+### The countdown
+
+The deadline is stamped in `localStorage` the first time the page is opened and
+then held, so refreshing does not restart it. When it runs out the discount is
+genuinely withdrawn and the full price is shown instead.
+
+A different browser or device starts a fresh hour. That is the limit of a static
+page with no login, and it is why the Selar coupon needs its own real expiry.

@@ -74,7 +74,7 @@ p{margin:0 0 20px;max-width:64ch}
 .hero{position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;padding:92px 0 0;
   background:
     radial-gradient(115% 80% at 78% 30%, #FDF8ED 0%, #F4EAD6 40%, #E6D4B4 100%)}
-#watch{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+#relic{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
 .hero-in{position:relative;z-index:3;width:100%;max-width:1200px;margin:0 auto;
   display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding:0 44px}
 .hero h1{color:var(--cocoa)}
@@ -84,7 +84,7 @@ p{margin:0 0 20px;max-width:64ch}
 .portrait{position:relative;justify-self:end;width:min(380px,100%);
   transform-style:preserve-3d;will-change:transform;animation:float 9s ease-in-out infinite}
 @keyframes float{0%,100%{translate:0 0}50%{translate:0 -14px}}
-.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;
+.portrait img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%;
   border-radius:28px;
   box-shadow:0 44px 70px -26px rgba(59,36,21,.45),0 0 0 8px rgba(253,250,242,.7)}
 .plate{position:absolute;left:-22px;bottom:-22px;background:var(--milk);
@@ -97,7 +97,7 @@ p{margin:0 0 20px;max-width:64ch}
   .hero-in{grid-template-columns:1fr;padding:0 24px;gap:36px}
   .portrait{justify-self:center;width:min(360px,88%)}
   .plate{left:auto;right:-10px}
-  #watch{opacity:.55}
+  #relic{opacity:.4}
 }
 
 /* ================= BUTTONS ================= */
@@ -378,6 +378,8 @@ footer strong{color:#F8F1E2}
 .sticky .btn{padding:14px 24px;font-size:17px;min-height:52px}
 .sticky span{font-size:16px;color:var(--soft)}
 @media (max-width:900px){.sticky.live{display:flex}}
+.sticky.hush{opacity:0;pointer-events:none;transform:translateY(14px)}
+.sticky{transition:opacity .35s ease,transform .35s ease}
 
 .rise{opacity:0;transform:translateY(30px) scale(.985);
   transition:opacity .85s cubic-bezier(.2,.8,.3,1),transform .85s cubic-bezier(.2,.8,.3,1)}
@@ -405,6 +407,84 @@ body.inapp-on{padding-top:74px}
 body.inapp-on .topbar{top:0}
 @media (max-width:520px){.inapp{flex-direction:column;align-items:flex-start}
   body.inapp-on{padding-top:128px}}
+
+/* free devotional band */
+.freebook{position:relative;padding:92px 0;overflow:hidden;
+  background:linear-gradient(168deg,#4A2129 0%,#3A1A21 54%,#2B1218 100%)}
+.freebook .wrap{position:relative;z-index:2}
+.freebook::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(64% 52% at 16% 8%,rgba(212,185,104,.20),transparent 62%)}
+.fb-in{display:grid;grid-template-columns:270px 1fr;gap:54px;align-items:center}
+.fb-cov{position:relative;animation:float 9s ease-in-out infinite}
+.fb-cov img{width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:4px 12px 12px 4px;
+  box-shadow:0 36px 60px -26px rgba(0,0,0,.72),0 0 0 1px rgba(212,185,104,.28)}
+.fb-cov::after{content:"";position:absolute;inset:0;border-radius:4px 12px 12px 4px;
+  pointer-events:none;background:linear-gradient(104deg,rgba(255,255,255,.17),rgba(255,255,255,0) 32%)}
+.fb-tag{display:inline-block;font-size:12.5px;letter-spacing:.2em;font-weight:700;
+  color:var(--gold-lt);margin:0 0 14px}
+.freebook h2{color:#FAF4E7;margin:0 0 16px;font-size:clamp(30px,4vw,42px);line-height:1.12}
+.freebook p{color:rgba(250,244,231,.84);font-size:18px;line-height:1.72;margin:0 0 16px}
+.fb-pts{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:9px}
+.fb-pts li{display:flex;align-items:flex-start;gap:11px;color:rgba(250,244,231,.9);font-size:16.5px}
+.fb-pts svg{flex:none;width:17px;height:17px;margin-top:4px;color:var(--gold-lt)}
+.freebook .btn{background:linear-gradient(180deg,#E6CE91,#C9A552);color:#3A1A21;
+  box-shadow:0 16px 30px -14px rgba(0,0,0,.7)}
+.freebook .btn:hover{filter:brightness(1.06)}
+.fb-note{display:block;margin-top:13px;font-size:14.5px;color:rgba(250,244,231,.62)}
+.hero-alt{display:block;margin-top:16px;font-size:16.5px;color:var(--gold);
+  text-decoration:none;border-bottom:1px solid rgba(168,132,47,.38);
+  width:fit-content;padding-bottom:2px;transition:color .3s ease,border-color .3s ease}
+.hero-alt:hover{color:var(--cocoa);border-color:var(--cocoa)}
+@media (max-width:860px){
+  .fb-in{grid-template-columns:1fr;gap:34px;text-align:center}
+  .fb-cov{width:min(230px,62%);margin:0 auto}
+  .fb-pts li{text-align:left}
+  .fb-pts{max-width:360px;margin-left:auto;margin-right:auto}
+}
+
+/* trust chips + contents panel */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.chips span{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;
+  color:var(--cocoa-2);background:rgba(212,185,104,.16);border:1px solid rgba(169,138,74,.3);
+  border-radius:999px;padding:6px 13px}
+.chips svg{width:13px;height:13px;color:var(--gold);flex:none}
+.chips .pg{background:rgba(107,46,56,.1);border-color:rgba(107,46,56,.3);color:var(--cocoa)}
+.chips .pg svg{width:14px;height:14px;color:var(--cocoa-2)}
+.peek{margin:0 0 18px}
+.peek-b{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:rgba(250,244,231,.7);border:1px solid rgba(169,138,74,.32);border-radius:14px;
+  padding:13px 17px;cursor:pointer;font:inherit;font-weight:700;font-size:15.5px;
+  color:var(--cocoa);transition:background .3s ease,border-color .3s ease}
+.peek-b:hover{background:rgba(212,185,104,.14);border-color:rgba(169,138,74,.55)}
+.peek-b i{flex:none;width:9px;height:9px;border-right:2px solid var(--gold);
+  border-bottom:2px solid var(--gold);transform:rotate(45deg) translate(-2px,-2px);
+  transition:transform .35s cubic-bezier(.2,.8,.3,1)}
+.peek.open .peek-b i{transform:rotate(225deg) translate(-3px,-3px)}
+.peek-w{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.3,1)}
+.peek.open .peek-w{grid-template-rows:1fr}
+.peek-w>div{overflow:hidden}
+.peek-s{max-height:330px;overflow-y:auto;margin-top:10px;padding:4px 4px 18px 0;
+  border-left:2px solid rgba(169,138,74,.26);
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 86%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0,#000 86%,transparent 100%);
+  scrollbar-width:thin;scrollbar-color:rgba(169,138,74,.5) transparent}
+.peek-s::-webkit-scrollbar{width:7px}
+.peek-s::-webkit-scrollbar-thumb{background:rgba(169,138,74,.45);border-radius:4px}
+.peek-s,.peek-s *{text-align:left}
+.peek-s li b{color:var(--gold)}
+.peek-s h4{margin:16px 0 7px 14px;font-family:"Fraunces",serif;font-size:14px;font-weight:800;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--gold)}
+.peek-s h4:first-child{margin-top:4px}
+.peek-s h4 em{display:block;font-style:normal;font-weight:600;letter-spacing:0;
+  text-transform:none;font-size:14px;color:var(--soft);margin-top:2px}
+.peek-s ol{list-style:none;margin:0;padding:0 0 0 14px}
+.peek-s ol li::before,.peek-s ol li::marker{content:none;display:none}
+.peek-s ol li{padding-left:0}
+.peek-s li{display:flex;gap:11px;align-items:baseline;padding:6px 0;font-size:15.5px;
+  color:var(--cocoa);line-height:1.45}
+.peek-s li b{flex:none;min-width:46px;font-size:12px;letter-spacing:.06em;color:var(--gold);
+  font-weight:700}
+.peek-note{margin:10px 0 0 14px;font-size:14px;color:var(--soft);font-style:italic}
 </style>
 </head>
 <body>
@@ -417,7 +497,7 @@ body.inapp-on .topbar{top:0}
   </div>
 </div>
 <header class="hero">
-  <canvas id="watch" aria-hidden="true"></canvas>
+  <canvas id="relic" aria-hidden="true"></canvas>
   <div class="topbar">
     <a class="wordmark" href="#challenges">Evelyn Miller</a>
     <nav class="socs" aria-label="Evelyn on social media">
@@ -433,9 +513,10 @@ body.inapp-on .topbar{top:0}
       <h1>I'm 86.<br>I live alone.<br>I have never<br>been alone.</h1>
       <p class="lede">Forty-one years in this house. I pray at the front window every evening, and I have never once prayed into an empty room.</p>
       <a class="btn" href="#challenges">See the two challenges</a>
+      <a class="hero-alt" href="devotion/">Or start with the free devotional &rarr;</a>
     </div>
     <div class="portrait" id="portrait">
-      <img src="assets/evelyn-hero.jpg" width="760" height="1362" fetchpriority="high" decoding="async" alt="Evelyn Miller, 86, silver hair in a braided crown, a nurse's fob watch pinned to her cardigan">
+      <img src="assets/evelyn-hero.jpg" width="1000" height="1000" fetchpriority="high" decoding="async" alt="Evelyn Miller, 86, silver hair in a braided crown, hands resting on a worn Bible at her kitchen table">
       <div class="plate"><strong>Evelyn Miller</strong><span>Thirty years a nurse. Mostly nights.</span></div>
     </div>
   </div>
@@ -562,12 +643,14 @@ body.inapp-on .topbar{top:0}
         <div class="info">
           <div class="price"><span class="now">$9.99</span><span class="was">$29.99</span></div>
           <p class="weeks">Declaring · Believing · Acting · Receiving</p>
+          <div class="chips"><span class="pg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"/></svg> 95 pages</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No subscription</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Yours to keep</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Instant download</span></div>
           <ul>
             <li>Every prayer written out in full, word for word</li>
             <li>Stories from an actual bedside — Ruth, Walter, Frank</li>
             <li>A week that pairs every declaration with one real action</li>
             <li>Fifteen minutes most mornings, and a page for your own testimony</li>
           </ul>
+          <div class="peek"><button class="peek-b" type="button" aria-expanded="false">See how the thirty days are built<i></i></button><div class="peek-w"><div><div class="peek-s"><h4>Every day<em>The same four parts, thirty times</em></h4><ol><li><b>A true story</b><span>From her own life, or from thirty years of nursing.</span></li><li><b>Today&#x27;s Scripture</b><span>One verse to hold on to.</span></li><li><b>Today&#x27;s Declaration</b><span>Written out in full. Say it exactly as written, or let it become your own words.</span></li><li><b>Carry This With You</b><span>One line to keep with you for the day.</span></li></ol><h4>Week One<em>Declaring</em></h4><ol><li><span>Not about feeling better yet. It is about saying the truth out loud before your body or your circumstances have caught up to it.</span></li></ol><h4>Week Two<em>Believing</em></h4><ol><li><span>Where the speaking settles into something steadier. Not manufactured feeling, but a quiet confidence that what you have been declaring is taking root.</span></li></ol><h4>Week Three<em>Acting</em></h4><ol><li><span>Your faith gets legs under it. Every declaration comes paired with something to actually do.</span></li></ol><h4>Week Four<em>Receiving</em></h4><ol><li><span>Where you receive, and learn to give thanks for what has already begun, even the parts still unfolding.</span></li></ol></div><p class="peek-note">Thirty days in all, about fifteen minutes each morning.</p></div></div></div>
           <a class="btn gold" target="_blank" rel="noopener" href="https://selar.com/16176qb598?add_to_cart=1">Start this challenge</a>
           <span class="btn-note">Instant download · King James verses</span>
         </div>
@@ -587,12 +670,14 @@ body.inapp-on .topbar{top:0}
         <div class="info">
           <div class="price"><span class="now">$14.99</span><span class="was">$50</span></div>
           <p class="weeks">The body He gave you to look after · Understanding what's happening · Morning energy · Rebuilding sleep · Making it stick</p>
+          <div class="chips"><span class="pg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"/></svg> 337 pages</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No subscription</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Yours to keep</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Instant download</span></div>
           <ul>
             <li>One story, one truth, one small action each day. Never five things.</li>
             <li>A full week on sleep, not just mornings</li>
             <li>No supplements, no equipment, no fifteen-step routine</li>
             <li>A final week built on keeping it after day thirty</li>
           </ul>
+          <div class="peek"><button class="peek-b" type="button" aria-expanded="false">See all thirty days<i></i></button><div class="peek-w"><div><div class="peek-s"><h4>Week One<em>Understanding What&#x27;s Actually Happening in Your Body</em></h4><ol><li><b>DAY 1</b><span>You Are Not &quot;Just Getting Old&quot;</span></li><li><b>DAY 2</b><span>The Myth of &quot;Slowing Down&quot;</span></li><li><b>DAY 3</b><span>What Fatigue Is Telling You</span></li><li><b>DAY 4</b><span>The Difference Between Rest and Numbness</span></li><li><b>DAY 5</b><span>Your Body Believes What You Tell It</span></li><li><b>DAY 6</b><span>Why Comparison Is Stealing Your Energy</span></li><li><b>DAY 7</b><span>Week One Reflection</span></li></ol><h4>Week Two<em>Morning Energy Rituals</em></h4><ol><li><b>DAY 8</b><span>The First Ten Minutes Decide the Whole Day</span></li><li><b>DAY 9</b><span>Light Is Medicine</span></li><li><b>DAY 10</b><span>Move Before You Sit</span></li><li><b>DAY 11</b><span>Protein Before Anything Sweet</span></li><li><b>DAY 12</b><span>The Power of a Fixed Wake Time</span></li><li><b>DAY 13</b><span>Silence Before Noise</span></li><li><b>DAY 14</b><span>Week Two Reflection</span></li></ol><h4>Week Three<em>Rebuilding Real Sleep</em></h4><ol><li><b>DAY 15</b><span>Sleep Is Not a Luxury, It&#x27;s Maintenance</span></li><li><b>DAY 16</b><span>The Screen Before Bed Problem</span></li><li><b>DAY 17</b><span>A Cool, Dark Room Does More Than You Think</span></li><li><b>DAY 18</b><span>The Racing Mind at Midnight</span></li><li><b>DAY 19</b><span>Caffeine&#x27;s Long Shadow</span></li><li><b>DAY 20</b><span>The Nap Trap</span></li><li><b>DAY 21</b><span>Week Three Reflection</span></li></ol><h4>Week Four<em>Making It Stick</em></h4><ol><li><b>DAY 22</b><span>You Don&#x27;t Need to Be Perfect, You Need to Return</span></li><li><b>DAY 23</b><span>Tell Someone What You&#x27;re Doing</span></li><li><b>DAY 24</b><span>Notice What&#x27;s Already Different</span></li><li><b>DAY 25</b><span>Build Your Non-Negotiables</span></li><li><b>DAY 26</b><span>What to Do When Life Gets in the Way</span></li><li><b>DAY 27</b><span>Your Body Remembers Consistency</span></li><li><b>DAY 28</b><span>Becoming Someone Others Notice</span></li><li><b>DAY 29</b><span>Looking Back at Thirty Days</span></li><li><b>DAY 30</b><span>This Is Who You Are Now</span></li></ol></div><p class="peek-note">Plus a closing word, a thirty-day recap, and four bonus sections.</p></div></div></div>
           <a class="btn" target="_blank" rel="noopener" href="https://selar.com/feel_younger_again?add_to_cart=1">Start this challenge</a>
           <span class="btn-note">Instant download · Phone or print</span>
         </div>
@@ -602,14 +687,38 @@ body.inapp-on .topbar{top:0}
 
     <div class="bundle rise">
       <div>
-        <span class="save">Save $4.98</span>
+        <span class="save">Save $4.99</span>
         <h3>Take both</h3>
         <p>The praying one and the body one. Sixty mornings altogether, and most people who write to me end up wanting the pair anyway.</p>
       </div>
       <div class="right">
-        <div class="money"><span class="big">$20</span><span class="strike">$24.98</span></div>
+        <div class="money"><span class="big">$19.99</span><span class="strike">$24.98</span></div>
         <a class="btn" target="_blank" rel="noopener" href="https://selar.com/8tr2aw35i7?add_to_cart=1">Take both challenges</a>
         <span class="btn-note">Both PDFs · One payment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="freebook">
+  <div class="wrap">
+    <div class="fb-in">
+      <div class="fb-cov rise">
+        <img src="assets/cover-devotional.jpg" width="1200" height="1800" loading="lazy" decoding="async"
+             alt="30 Scripture-Based Prayers To Pray Over Your Children, a free thirty-day devotional by Evelyn Miller">
+      </div>
+      <div class="rise">
+        <span class="fb-tag">COSTS NOTHING</span>
+        <h2>Before you buy anything,<br>let me give you one.</h2>
+        <p>There is a thirty-day devotional I wrote for the parent whose grown child has gone quiet. A son who does not always call. A daughter who carries more than she tells you.</p>
+        <p>It is not a sample of something else. It is the whole book, all thirty days, and it comes to your email in a minute or two.</p>
+        <ul class="fb-pts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Thirty days, one page each, in large print</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>A verse, a prayer written out, and one line to carry</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>No card, no subscription, nothing that renews</span></li>
+        </ul>
+        <a class="btn" href="devotion/">Send me the free devotional</a>
+        <span class="fb-note">107 pages &middot; free PDF &middot; yours to keep</span>
       </div>
     </div>
   </div>
@@ -675,9 +784,9 @@ body.inapp-on .topbar{top:0}
     <a class="soc" href="https://www.youtube.com/channel/UCaWKW81ae8pABUJq8a9FJvA" target="_blank" rel="noopener" aria-label="Evelyn on YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.58 7.19a2.51 2.51 0 0 0-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42A2.51 2.51 0 0 0 2.42 7.19 26.1 26.1 0 0 0 2 12a26.1 26.1 0 0 0 .42 4.81 2.51 2.51 0 0 0 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42a2.51 2.51 0 0 0 1.77-1.77A26.1 26.1 0 0 0 22 12a26.1 26.1 0 0 0-.42-4.81zM10 15.02V8.98L15.2 12 10 15.02z"/></svg></a>
     </nav>
     <p><strong>Evelyn Miller</strong> — thirty-day challenges for women who are still praying.</p>
-    <p class="disc"><strong>Advertisement.</strong> This page is published by [YOUR BRAND NAME], the seller of the products shown. Evelyn Miller is a character, and the letters, stories and narration on this page are storytelling devices. The programs were written and reviewed by our team. Purchases are completed on Selar, which delivers the files and handles payment.</p>
+    <p class="disc"><strong>Advertisement.</strong> The books on this page were written and reviewed by the team behind Evelyn Miller. They are offered for personal encouragement and study, and are not medical, psychological or legal advice, nor a substitute for care from a qualified professional. Purchases are completed on Selar, which delivers the files and handles payment.</p>
     <p class="disc">These books are for general information and personal study. They are not medical advice, they do not diagnose or treat anything, and they are not a substitute for your own doctor. Individual experiences differ. Speak to your own doctor before changing how you move, eat or take medication.</p>
-    <p>Questions: <a href="mailto:support@example.com">support@example.com</a> · <a href="https://selar.com/m/EvelynMillers">Both books on Selar</a></p>
+    <p>Questions: <a href="mailto:support@example.com">support@example.com</a> · <a href="devotion/">Free devotional</a> · <a href="https://selar.com/m/EvelynMillers">Both books on Selar</a></p>
     <p>© 2026. All rights reserved.</p>
   </div>
 </footer>
@@ -757,9 +866,9 @@ body.inapp-on .topbar{top:0}
     });
   })();
 
-  /* ---------- 3D brass fob watch ---------- */
+  /* ---------- 3D brass cross pendant ---------- */
   (function(){
-    var cv = document.getElementById('watch');
+    var cv = document.getElementById('relic');
     if(!cv || typeof THREE === 'undefined') return;
     var sc = new THREE.Scene();
     var cam = new THREE.PerspectiveCamera(34,1,0.1,100); cam.position.set(0,0,7.4);
@@ -767,55 +876,50 @@ body.inapp-on .topbar{top:0}
     rnd.setPixelRatio(Math.min(window.devicePixelRatio,2));
     var g = new THREE.Group(); sc.add(g);
 
-    var brass = new THREE.MeshStandardMaterial({color:0xC9A355, metalness:.96, roughness:.26});
-    var brassD = new THREE.MeshStandardMaterial({color:0x9C7C33, metalness:.9, roughness:.38});
+    var brass  = new THREE.MeshStandardMaterial({color:0xBE9846, metalness:.58, roughness:.32});
+    var brassD = new THREE.MeshStandardMaterial({color:0x8A6B2A, metalness:.5, roughness:.5});
 
-    var body = new THREE.Mesh(new THREE.CylinderGeometry(1.62,1.62,0.2,96), brass);
-    body.rotation.x = Math.PI/2; g.add(body);
-    g.add(new THREE.Mesh(new THREE.TorusGeometry(1.62,0.085,20,110), brass));
-    var bar = new THREE.Mesh(new THREE.BoxGeometry(1.5,0.16,0.14), brassD); bar.position.y=2.08; g.add(bar);
-    var stem = new THREE.Mesh(new THREE.BoxGeometry(0.22,0.42,0.14), brassD); stem.position.y=1.83; g.add(stem);
-
-    var c=document.createElement('canvas'); c.width=c.height=512; var x=c.getContext('2d');
-    x.fillStyle='#FBF5E8'; x.fillRect(0,0,512,512);
-    x.translate(256,256); x.rotate(Math.PI);
-    x.strokeStyle='#431F25';
-    for(var i=0;i<60;i++){
-      var a=i*Math.PI/30, lng=(i%5===0), r1=218, r2=lng?196:206;
-      x.lineWidth=lng?5:2; x.beginPath();
-      x.moveTo(Math.sin(a)*r1,-Math.cos(a)*r1); x.lineTo(Math.sin(a)*r2,-Math.cos(a)*r2); x.stroke();
+    /* cross: a Latin cross with a chamfered face and an engraved inlay */
+    var cross = new THREE.Group(); g.add(cross);
+    function bar(w,h,d,y){
+      var m = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), brass);
+      m.position.y = y; cross.add(m); return m;
     }
-    x.fillStyle='#431F25'; x.font='700 46px Georgia, serif';
-    x.textAlign='center'; x.textBaseline='middle';
-    for(var h=1;h<=12;h++){
-      var ah=h*Math.PI/6; x.save();
-      x.translate(Math.sin(ah)*160,-Math.cos(ah)*160); x.rotate(Math.PI);
-      x.fillText(String(h),0,3); x.restore();
+    bar(0.60, 3.16, 0.40, 0.00);          /* upright  */
+    bar(2.00, 0.60, 0.40, 0.62);          /* crossbar */
+    /* raised bevel plate on the front face, slightly darker */
+    function inlay(w,h,y){
+      var m = new THREE.Mesh(new THREE.BoxGeometry(w,h,0.06), brassD);
+      m.position.set(0,y,0.205); cross.add(m);
     }
-    var tex=new THREE.CanvasTexture(c); tex.anisotropy=4;
-    var dial=new THREE.Mesh(new THREE.CircleGeometry(1.52,96),
-      new THREE.MeshStandardMaterial({map:tex, metalness:.04, roughness:.88}));
-    dial.position.z=0.105; g.add(dial);
+    inlay(0.22, 2.84, 0.00);
+    inlay(1.70, 0.22, 0.62);
+    /* small boss where the arms meet */
+    var boss = new THREE.Mesh(new THREE.CylinderGeometry(0.17,0.17,0.46,28), brass);
+    boss.rotation.x = Math.PI/2; boss.position.set(0,0.62,0.10); cross.add(boss);
 
-    function hand(len,w,col,z){
-      var m=new THREE.Mesh(new THREE.BoxGeometry(w,len,0.03),
-        new THREE.MeshStandardMaterial({color:col, metalness:.55, roughness:.36}));
-      m.position.y=len/2; var p=new THREE.Group(); p.add(m); p.position.z=z; g.add(p); return p;
+    /* bail + a few chain links climbing out of frame */
+    var bail = new THREE.Mesh(new THREE.TorusGeometry(0.21,0.062,16,40), brassD);
+    bail.position.y = 1.78; cross.add(bail);
+    for(var i=0;i<9;i++){
+      var lk = new THREE.Mesh(new THREE.TorusGeometry(0.15,0.045,14,32), i%2?brass:brassD);
+      lk.position.y = 2.12 + i*0.26;
+      lk.rotation.y = (i%2) ? Math.PI/2 : 0;
+      cross.add(lk);
     }
-    var hH=hand(0.78,0.10,0x431F25,0.13), hM=hand(1.14,0.07,0x431F25,0.145), hS=hand(1.22,0.028,0xA8842F,0.16);
-    var cap=new THREE.Mesh(new THREE.CylinderGeometry(0.08,0.08,0.06,24), brassD);
-    cap.rotation.x=Math.PI/2; cap.position.z=0.19; g.add(cap);
 
-    sc.add(new THREE.AmbientLight(0xffffff,.5));
-    var key=new THREE.DirectionalLight(0xFFE9C4,1.4); key.position.set(-4,5,6); sc.add(key);
-    var fill=new THREE.DirectionalLight(0xE8D2A8,.6); fill.position.set(5,-2,3); sc.add(fill);
-    var rim=new THREE.PointLight(0xC98A6A,1.2,24); rim.position.set(4,3,-4); sc.add(rim);
+    sc.add(new THREE.AmbientLight(0xFFF1D6,.42));
+    var key=new THREE.DirectionalLight(0xFFEBC8,1.25); key.position.set(-3.5,4.5,6.5); sc.add(key);
+    var face=new THREE.DirectionalLight(0xFFF4E2,.42); face.position.set(0.6,1,9); sc.add(face);
+    var fill=new THREE.DirectionalLight(0xD9C095,.4); fill.position.set(5,-2.5,3.5); sc.add(fill);
+    var rim=new THREE.PointLight(0xC98A5A,.9,26); rim.position.set(4,3,-4); sc.add(rim);
 
     function resize(){
       var w=cv.clientWidth,h=cv.clientHeight; if(!w||!h) return;
       rnd.setSize(w,h,false); cam.aspect=w/h; cam.updateProjectionMatrix();
-      g.scale.setScalar(0.72+Math.min(1,w/1100)*0.52);
-      g.position.x = w>900 ? 1.7 : 0;
+      var big = w>900;
+      g.scale.setScalar(big ? (0.26+Math.min(1,w/1600)*0.16) : 0.30);
+      g.position.x = big ? 2.95 : 0;
     }
     window.addEventListener('resize',resize); resize();
 
@@ -832,12 +936,11 @@ body.inapp-on .topbar{top:0}
     function loop(t){
       requestAnimationFrame(loop); if(!visible) return;
       mx+=(tx-mx)*0.05; my+=(ty-my)*0.05;
-      g.rotation.y = -0.3 + mx + (reduce?0:Math.sin(t*0.00055)*0.22);
-      g.rotation.x = 0.12 + my + (reduce?0:Math.sin(t*0.0004)*0.05);
-      g.position.y = (cv.clientWidth>900?0.1:0.35) + (reduce?0:Math.sin(t*0.0009)*0.1);
-      var d=new Date(), s=d.getSeconds()+d.getMilliseconds()/1000,
-          m=d.getMinutes()+s/60, h=(d.getHours()%12)+m/60;
-      hS.rotation.z=-s*Math.PI/30; hM.rotation.z=-m*Math.PI/30; hH.rotation.z=-h*Math.PI/6;
+      /* hangs from the chain: a slow pendulum sway, not a spin */
+      g.rotation.y = -0.22 + mx + (reduce?0:Math.sin(t*0.00042)*0.52);
+      g.rotation.z = (reduce?0:Math.sin(t*0.00031)*0.055);
+      g.rotation.x = 0.06 + my;
+      g.position.y = (cv.clientWidth>900?1.55:0.5) + (reduce?0:Math.sin(t*0.0009)*0.09);
       rnd.render(sc,cam);
     }
     requestAnimationFrame(loop);
@@ -882,10 +985,20 @@ body.inapp-on .topbar{top:0}
     });
   });
 
+
+  document.querySelectorAll('.peek-b').forEach(function(b){
+    b.addEventListener('click',function(){
+      var pk=b.parentNode, open=pk.classList.toggle('open');
+      b.setAttribute('aria-expanded', open?'true':'false');
+    });
+  });
   /* ---------- sticky bar ---------- */
   var sticky=document.getElementById('sticky'), hero=document.querySelector('.hero');
   if(sticky&&hero&&'IntersectionObserver' in window){
     new IntersectionObserver(function(es){ sticky.classList.toggle('live',!es[0].isIntersecting); },{threshold:0}).observe(hero);
+    var free=document.querySelector('.freebook');
+    if(free){ new IntersectionObserver(function(es){
+      sticky.classList.toggle('hush', es[0].isIntersecting); },{threshold:.18}).observe(free); }
   }
 })();
 </script>
