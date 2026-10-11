@@ -47,8 +47,15 @@ p{margin:0 0 20px}
   top:-110px;right:-100px;animation:drift 26s ease-in-out infinite}
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-44px,40px) scale(1.1)}}
 
-.grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr .92fr;gap:40px;align-items:center}
-@media (max-width:860px){.grid{grid-template-columns:1fr;gap:34px}}
+.grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr .92fr;
+  grid-template-rows:auto 1fr;gap:26px 40px;align-items:start}
+.grid .copy{grid-column:1;grid-row:1;align-self:start}
+.grid .stage{grid-column:2;grid-row:1 / span 2;align-self:center}
+.grid .catch{grid-column:1;grid-row:2;align-self:start}
+@media (max-width:860px){.grid{grid-template-columns:1fr;gap:26px}
+  .grid .copy{grid-column:1;grid-row:1;align-self:auto}
+  .grid .stage{grid-column:1;grid-row:2}
+  .grid .catch{grid-column:1;grid-row:3}}
 
 .kicker{display:inline-block;font-size:13px;letter-spacing:.17em;color:var(--gold);
   font-weight:600;margin-bottom:20px}
@@ -292,25 +299,10 @@ footer strong{color:#FAF4E7}
   <span class="orb o1"></span>
   <div class="page">
     <div class="grid">
-      <div>
+      <div class="copy">
         <span class="kicker">A FREE DEVOTIONAL</span>
         <h1>For the one you keep praying for.</h1>
         <p class="lede">Thirty days of prayers for your son or your daughter, written out word for word, so you never have to go hunting for them on a hard morning.</p>
-
-        <!-- ============================================================
-             SWAP THE action= BELOW FOR YOUR EMAIL SERVICE'S FORM URL.
-             Set the service's redirect / thank-you page to:
-             https://evelynmillers.github.io/devotion/sent/
-             ============================================================ -->
-        <form class="catch" action="EMAIL_SERVICE_FORM_URL" method="post">
-          <label for="em">Where should I send it?</label>
-          <div class="row">
-            <input id="em" type="email" name="email" required autocomplete="email"
-                   inputmode="email" placeholder="your email address">
-            <button class="btn" type="submit">Send it to me</button>
-          </div>
-          <p class="small">It is free and it stays free. One page a day, in large print. You can leave the list any time, and I will not pass your address to anybody.</p>
-        </form>
       </div>
 
       <div class="stage" role="img" aria-label="30 Scripture-Based Prayers To Pray Over Your Children, a free thirty-day devotional by Evelyn Miller">
@@ -334,6 +326,21 @@ footer strong{color:#FAF4E7}
           <p>A thirty-day devotional &middot; 107 pages &middot; free PDF</p>
         </div>
       </div>
+
+      <!-- ============================================================
+           SWAP THE action= BELOW FOR YOUR EMAIL SERVICE'S FORM URL.
+           Set the service's redirect / thank-you page to:
+           https://evelynmillers.github.io/devotion/sent/
+           ============================================================ -->
+      <form class="catch" action="EMAIL_SERVICE_FORM_URL" method="post">
+        <label for="em">Where should I send it?</label>
+        <div class="row">
+          <input id="em" type="email" name="email" required autocomplete="email"
+                 inputmode="email" placeholder="your email address">
+          <button class="btn" type="submit">Send it to me</button>
+        </div>
+        <p class="small">It is free and it stays free. One page a day, in large print. You can leave the list any time, and I will not pass your address to anybody.</p>
+      </form>
     </div>
   </div>
 </header>

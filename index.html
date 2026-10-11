@@ -815,6 +815,9 @@ body.inapp-on .topbar{top:0}
     var sticky = document.getElementById('sticky');
     if (bar) { bar.classList.add('live'); document.body.classList.add('inapp-on'); }
 
+    /* Android: intent:// genuinely hands off to Chrome.
+       iOS: Apple removed x-safari-, and Instagram blocks every other scheme.
+       There is no programmatic escape, so do not break the link pretending there is. */
     function escapeTo(url){
       if (isAndroid) {
         var naked = url.replace(/^https?:\/\//,'');
@@ -823,24 +826,16 @@ body.inapp-on .topbar{top:0}
           'S.browser_fallback_url=' + encodeURIComponent(url) + ';end';
         return true;
       }
-      if (isIOS) {
-        var t = setTimeout(function(){ window.location.href = url; }, 900);
-        window.addEventListener('pagehide', function(){ clearTimeout(t); }, {once:true});
-        window.location.href = 'x-safari-' + url;
-        return true;
-      }
       return false;
     }
 
-    /* every checkout link tries to jump out first */
-    document.querySelectorAll('a[href*="selar.com"]').forEach(bind);
+    /* Checkout links: try the hand-off on Android, otherwise let the link work. */
     function bind(a){
       a.addEventListener('click', function(e){
-        e.preventDefault();
-        if (!escapeTo(a.href)) window.open(a.href, '_blank', 'noopener');
+        if (isAndroid) { e.preventDefault(); escapeTo(a.href); }
       });
     }
-    /* links built later by the picker */
+    document.querySelectorAll('a[href*="selar.com"]').forEach(bind);
     var res = document.getElementById('res');
     if (res && 'MutationObserver' in window) {
       new MutationObserver(function(){
@@ -850,15 +845,33 @@ body.inapp-on .topbar{top:0}
       }).observe(res, {childList:true, subtree:true});
     }
 
+    function copyLink(cb){
+      var url = window.location.href;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function(){cb(true);},function(){cb(fallback());});
+      } else { cb(fallback()); }
+      function fallback(){
+        try{
+          var ta=document.createElement('textarea');
+          ta.value=url; ta.setAttribute('readonly','');
+          ta.style.position='fixed'; ta.style.top='-1000px';
+          document.body.appendChild(ta); ta.select();
+          var okc=document.execCommand('copy'); document.body.removeChild(ta); return okc;
+        }catch(err){ return false; }
+      }
+    }
+
     var ob = document.getElementById('openBrowser');
     if (ob) ob.addEventListener('click', function(){
-      if (!escapeTo(window.location.href)) {
-        var ta = document.createElement('textarea');
-        ta.value = window.location.href; document.body.appendChild(ta);
-        ta.select(); try{ document.execCommand('copy'); }catch(err){}
-        document.body.removeChild(ta);
-        ob.textContent = 'Link copied — paste it in your browser';
-      }
+      if (escapeTo(window.location.href)) return;
+      copyLink(function(copied){
+        var msg = bar.querySelector('p');
+        if (msg) msg.innerHTML = copied
+          ? 'Link copied. Tap <b>\u22ef</b> at the top, then <b>Open in browser</b> \u2014 or paste it into Safari.'
+          : 'Tap <b>\u22ef</b> at the top of this window, then <b>Open in browser</b>.';
+        ob.textContent = copied ? 'Link copied' : 'Got it';
+        ob.disabled = true; ob.style.opacity = '.7';
+      });
     });
     var dm = document.getElementById('dismissInapp');
     if (dm) dm.addEventListener('click', function(){
