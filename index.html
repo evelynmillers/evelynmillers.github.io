@@ -84,7 +84,7 @@ p{margin:0 0 20px;max-width:64ch}
 .portrait{position:relative;justify-self:end;width:min(380px,100%);
   transform-style:preserve-3d;will-change:transform;animation:float 9s ease-in-out infinite}
 @keyframes float{0%,100%{translate:0 0}50%{translate:0 -14px}}
-.portrait img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%;
+.portrait img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;
   border-radius:28px;
   box-shadow:0 44px 70px -26px rgba(59,36,21,.45),0 0 0 8px rgba(253,250,242,.7)}
 .plate{position:absolute;left:-22px;bottom:-22px;background:var(--milk);
@@ -485,6 +485,31 @@ body.inapp-on .topbar{top:0}
 .peek-s li b{flex:none;min-width:46px;font-size:12px;letter-spacing:.06em;color:var(--gold);
   font-weight:700}
 .peek-note{margin:10px 0 0 14px;font-size:14px;color:var(--soft);font-style:italic}
+
+/* photo of her beside the letter */
+.letter .card{position:relative}
+.letter .narrow{max-width:1000px}
+.lettergrid{display:grid;grid-template-columns:300px 1fr;gap:46px;align-items:start}
+.lettershot{position:relative;animation:float 11s ease-in-out infinite}
+.lettershot img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:50% 28%;
+  border-radius:20px;box-shadow:0 28px 52px -26px rgba(67,31,37,.5),0 0 0 6px rgba(254,251,244,.8)}
+.lettershot figcaption{margin-top:14px;font-size:14.5px;color:var(--soft);line-height:1.5;
+  text-align:center;font-style:italic}
+@media (max-width:820px){.lettergrid{grid-template-columns:1fr;gap:28px}
+  .lettershot{width:min(230px,66%);margin:0 auto}}
+
+/* her hands — a quiet full-width band */
+.handsband{position:relative;padding:0;overflow:hidden;background:#EFE3C9}
+.handsband img{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;
+  object-position:50% 46%}
+.handsband .cap{position:absolute;inset:auto 0 0 0;padding:70px 24px 34px;
+  background:linear-gradient(180deg,rgba(43,18,24,0),rgba(43,18,24,.72));
+  text-align:center}
+.handsband .cap p{margin:0 auto;max-width:34ch;color:#FBF4E6;font-family:"Fraunces",serif;
+  font-size:clamp(20px,2.6vw,27px);line-height:1.4;font-style:italic;
+  text-shadow:0 2px 10px rgba(0,0,0,.5)}
+@media (max-width:700px){.handsband img{max-height:300px}
+  .handsband .cap{padding:48px 18px 22px}}
 </style>
 </head>
 <body>
@@ -516,7 +541,7 @@ body.inapp-on .topbar{top:0}
       <a class="hero-alt" href="devotion/">Or start with the free devotional &rarr;</a>
     </div>
     <div class="portrait" id="portrait">
-      <img src="assets/evelyn-hero.jpg" width="1000" height="1000" fetchpriority="high" decoding="async" alt="Evelyn Miller, 86, silver hair in a braided crown, hands resting on a worn Bible at her kitchen table">
+      <img src="assets/evelyn-hero.jpg" width="614" height="1100" fetchpriority="high" decoding="async" alt="Evelyn Miller, 86, silver hair in a braided crown, seated at the table in her own living room">
       <div class="plate"><strong>Evelyn Miller</strong><span>Thirty years a nurse. Mostly nights.</span></div>
     </div>
   </div>
@@ -526,13 +551,28 @@ body.inapp-on .topbar{top:0}
   <span class="orb o1"></span><span class="orb o2"></span>
   <div class="wrap narrow">
     <div class="card rise">
+     <div class="lettergrid">
+      <figure class="lettershot">
+        <img src="assets/evelyn-writing.jpg" width="821" height="1100" loading="lazy" decoding="async"
+             alt="Evelyn Miller writing by hand in a notebook at her kitchen table">
+        <figcaption>Most mornings, before the day starts.</figcaption>
+      </figure>
+      <div>
       <p>There is a prayer you have been saying for somebody, and you have been saying it a long while now.</p>
       <p>I spent thirty years as a nurse, most of them on nights. The quiet hours are when people finally say what they have been carrying, and I heard a great deal of it. Some of them went home. Some of them did not. He was in the room just the same.</p>
       <p>The house on Maple is quiet now, and my son does not always call. I pray at the front window every evening and I hand him back.</p>
       <p>I do not know how any of it ends. I have stopped needing to.</p>
       <p class="sig">— Evelyn</p>
+      </div>
+     </div>
     </div>
   </div>
+</section>
+
+<section class="handsband rise">
+  <img src="assets/evelyn-hands.jpg" width="1600" height="1195" loading="lazy" decoding="async"
+       alt="Evelyn Miller's hands resting on a worn leather Bible">
+  <div class="cap"><p>Forty-one years in this house, and the same book on the same table.</p></div>
 </section>
 
 <section>
