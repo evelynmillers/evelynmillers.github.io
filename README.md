@@ -152,9 +152,9 @@ Everything stated as a fact should stay checkable.
 
 - **Miller vs Millers.** The new book's cover and the thank-you page say
   *Millers*. The rest of the site, the Instagram handle
-  (`evelynmiller_us`) and the contact address (`evelynmiller3716@gmail.com`)
-  say *Miller*. Both spellings are currently visible on the same shelf.
-  Unresolved.
+  (`evelyn.m_us`) and the contact address (`evelynmiller3716@gmail.com`)
+  say *Miller*, while the Threads handle (`evelyn.millers.us`) says
+  *Millers*. The handles no longer agree with each other either. Unresolved.
 - **Unused assets:** `evelyn-door.jpg`, `evelyn-window.jpg`,
   `evelyn-living.jpg` are in `assets/` but not referenced by any page.
 
