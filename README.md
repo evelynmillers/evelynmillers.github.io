@@ -101,6 +101,12 @@ bigger frame and it detaches from the page edges.
 the characters either side of the bundle block and left a stray `v>` printing
 on the page. Edit by exact string, and run a parser over the result.
 
+**The thank-you page offer must stay above the fold.** The cover, title,
+price, clock and button all fit on the first screen at 390x844 — the button
+lands at ~633px. Adding anything above the offer, or letting the cover go
+full width on mobile again, pushes the button off-screen; it used to sit at
+1768px, two screens down. Measure after changing that page, don't eyeball it.
+
 **Do not add `autocorrect="off"` or `spellcheck="false"` to the email field.**
 On iOS the AutoFill email suggestion rides in the QuickType bar above the
 keyboard, and those attributes hide that bar. `type="email"` already disables
