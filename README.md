@@ -18,11 +18,11 @@ assets/                     all images
 
 | Product | Price | Selar | Used on |
 |---|---|---|---|
-| What Your Adult Child Wishes You Knew | $27 | `h9v900180y` | store, and the expired state of the thank-you page |
-| ...same book, thank-you price | $17 | `051220678u` | thank-you page, first hour only |
+| What Your Adult Child Wishes You Knew | $26.99 | `h9v900180y` | store, and the expired state of the thank-you page |
+| ...same book, thank-you price | $16.99 | `051220678u` | thank-you page, first hour only |
 | God Heals | $9.99 | `16176qb598` | store |
 | Feel Younger Again | $14.99 | `feel_younger_again` | store |
-| Both challenges | $19.99 | `8tr2aw35i7` | store |
+| All three | $34.99 (was $51.97) | `8tr2aw35i7` | store bundle block |
 
 Full form: `https://selar.com/<id>?add_to_cart=1`
 
@@ -72,9 +72,34 @@ at submit time. That split exists on purpose — see below.
 
 ---
 
+## Voice
+
+**The whole site is Evelyn speaking in the first person.** "My newest book",
+"my three books", "all my books on Selar". Never "her" or "she" about
+Evelyn — that reads as somebody writing *about* her on her own site, and it
+breaks the only thing the page is selling.
+
+The two correct uses of "her" are in the gift section ("Pick one for her" —
+the mother being bought for) and the reader's own daughter. Both refer to
+the reader's family, not to Evelyn.
+
+The footer's advertisement disclosure is deliberately third person and
+should stay that way.
+
+---
+
 ## Things that are easy to break
 
 These are all bugs that have already happened here. Each cost real debugging.
+
+**`.f-front` and `.f-back` are sized by one shared rule.** The base is
+`.f-front,.f-back{width:228px;height:332px}`. If you resize a book, restate
+*both*. Overriding only `.f-back` leaves the cover at the old size inside a
+bigger frame and it detaches from the page edges.
+
+**Do not swap HTML blocks with a regex.** A non-greedy `.*?</div>` match ate
+the characters either side of the bundle block and left a stray `v>` printing
+on the page. Edit by exact string, and run a parser over the result.
 
 **Do not add `autocorrect="off"` or `spellcheck="false"` to the email field.**
 On iOS the AutoFill email suggestion rides in the QuickType bar above the
@@ -130,9 +155,6 @@ Everything stated as a fact should stay checkable.
   (`evelynmiller_us`) and the contact address (`evelynmiller3716@gmail.com`)
   say *Miller*. Both spellings are currently visible on the same shelf.
   Unresolved.
-- **No three-book bundle.** "Take both" at $19.99 now sits below a $27 single
-  book. A three-book Selar product around $34.99 against $51.97 would fix the
-  ladder.
 - **Unused assets:** `evelyn-door.jpg`, `evelyn-window.jpg`,
   `evelyn-living.jpg` are in `assets/` but not referenced by any page.
 
