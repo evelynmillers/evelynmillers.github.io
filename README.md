@@ -7,7 +7,7 @@ them as-is.
 
 ```
 index.html                  store / landing page
-devotion/index.html         free devotional opt-in (MailerLite)
+devotion/index.html         free devotional opt-in (MailerLite) + the book
 devotion/sent/index.html    thank-you page + timed offer
 assets/                     all images
 ```
@@ -100,6 +100,23 @@ bigger frame and it detaches from the page edges.
 **Do not swap HTML blocks with a regex.** A non-greedy `.*?</div>` match ate
 the characters either side of the bundle block and left a stray `v>` printing
 on the page. Edit by exact string, and run a parser over the result.
+
+**The devotional hero shows both books above the fold.** Free devotional and
+the paid book sit side by side, each with its own button, and both clear the
+fold at 375x667 as well as 390x844. The hero used to be 1493px tall with the
+email field at 1157px — nobody saw the signup without scrolling. Anything
+added above the tiles pushes them off again; measure, don't eyeball.
+
+**`.stage` centres vertically, not horizontally.** It is
+`flex-direction: column`, so `justify-content: center` does nothing for
+horizontal placement. Inside the hero grid its column held it; standing on
+its own in `.stagewrap` it needed `align-items: center` or it sat 368px left
+of centre on desktop.
+
+**Bind every jump link, not the first.** The devotional page has more than
+one `a[href="#em"]` now (the book section and the closing section). The
+handler uses `querySelectorAll(...).forEach`. A `querySelector` there binds
+only the first and the others silently lose their focus behaviour.
 
 **The thank-you page offer must stay above the fold.** The cover, title,
 price, clock and button all fit on the first screen at 390x844 — the button

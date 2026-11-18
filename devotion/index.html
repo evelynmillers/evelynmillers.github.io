@@ -50,11 +50,11 @@ p{margin:0 0 20px}
 .grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr .92fr;
   grid-template-rows:auto 1fr;gap:26px 40px;align-items:start}
 .grid .copy{grid-column:1;grid-row:1;align-self:start}
-.grid .stage{grid-column:2;grid-row:1 / span 2;align-self:center}
+.grid .duo{grid-column:2;grid-row:1 / span 2;align-self:center}
 .grid .catch{grid-column:1;grid-row:2;align-self:start}
 @media (max-width:860px){.grid{grid-template-columns:1fr;gap:26px}
   .grid .copy{grid-column:1;grid-row:1;align-self:auto}
-  .grid .stage{grid-column:1;grid-row:2}
+  .grid .duo{grid-column:1;grid-row:2}
   .grid .catch{grid-column:1;grid-row:3}}
 
 
@@ -211,6 +211,106 @@ input[type=email]:focus{outline:3px solid var(--gold);outline-offset:2px;border-
   box-shadow:0 30px 56px -24px rgba(67,31,37,.45),0 0 0 7px rgba(254,251,244,.7)}
 .whoport .cap{display:block;margin-top:16px;font-size:15px;color:var(--soft);line-height:1.5}
 
+
+/* ---- the book, offered beside the free devotional ---- */
+.bookoffer{padding:84px 0;
+  background:linear-gradient(180deg,var(--cream-2),var(--cream-3) 55%,var(--cream-2))}
+.bo-in{display:grid;grid-template-columns:.72fr 1fr;gap:52px;align-items:center;
+  max-width:980px;margin:0 auto}
+.bo-cov img{width:100%;height:auto;display:block;border-radius:5px;
+  box-shadow:0 40px 70px -28px rgba(59,36,21,.6),0 0 0 1px rgba(169,138,74,.25)}
+.bo-tag{display:inline-block;font-size:12.5px;letter-spacing:.17em;font-weight:700;
+  color:#8A5A1E;background:rgba(212,185,104,.32);padding:6px 14px;border-radius:999px;
+  margin-bottom:16px}
+.bookoffer h2{margin-bottom:8px;line-height:1.1}
+.bo-sub{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:19px;
+  color:var(--cocoa-2);margin:0 0 20px}
+.bookoffer p{font-size:17.5px;line-height:1.6;color:var(--soft);margin:0 0 16px}
+.bo-deal{display:flex;gap:13px;align-items:flex-start;margin:24px 0 8px;
+  background:var(--milk);border:1px solid rgba(169,138,74,.34);border-radius:18px;
+  padding:18px 20px;box-shadow:0 16px 36px -30px rgba(67,31,37,.6)}
+.bo-deal svg{flex:none;width:19px;height:27px;color:var(--gold);margin-top:2px}
+.bo-deal p{margin:0;font-size:17px;color:var(--cocoa-2);line-height:1.52}
+.bo-deal b{color:var(--cocoa);font-weight:700}
+.bo-acts{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:24px}
+.btn-2{display:inline-block;background:transparent;color:var(--cocoa);
+  text-decoration:none;cursor:pointer;border:2px solid rgba(67,31,37,.3);
+  font-family:"Libre Franklin";font-weight:600;font-size:17.5px;line-height:1.2;
+  padding:17px 26px;min-height:58px;border-radius:999px;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:border-color .22s ease,background .22s ease,transform .22s ease}
+.btn-2:hover{border-color:var(--cocoa);background:rgba(67,31,37,.05);transform:translateY(-2px)}
+.btn-2:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.bo-note{display:block;margin-top:14px;font-size:15px;color:var(--soft)}
+@media (max-width:860px){
+  .bookoffer{padding:62px 0}
+  .bo-in{grid-template-columns:1fr;gap:30px}
+  .bo-cov{max-width:238px;margin:0 auto}
+  .bo-acts{flex-direction:column;align-items:stretch}
+  .bo-acts .btn,.bo-acts .btn-2{width:100%;text-align:center}
+}
+
+/* ---- hero: both products visible on a phone without scrolling ---- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
+.tile{display:flex;flex-direction:column;align-items:center;text-align:center;
+  background:var(--milk);border-radius:18px;padding:14px 12px 14px;
+  box-shadow:0 18px 40px -26px rgba(67,31,37,.55);
+  border:1px solid rgba(169,138,74,.26)}
+/* the paid one reads as a shop item, not a second free gift */
+.tile-paid{background:linear-gradient(180deg,#F6EEDD,#F0E4CB);
+  border:1px solid rgba(67,31,37,.18)}
+.t-shot{display:flex;align-items:flex-end;justify-content:center;width:100%;height:232px}
+.t-shot img{max-height:100%;width:auto;max-width:100%;height:auto;display:block;border-radius:4px;
+  box-shadow:0 14px 26px -14px rgba(59,36,21,.7),0 0 0 1px rgba(169,138,74,.22)}
+.t-tag{display:inline-flex;align-items:center;justify-content:center;min-height:26px;
+  margin:11px 0 7px;font-size:12.5px;font-weight:700;letter-spacing:.09em;
+  padding:5px 12px;border-radius:999px;line-height:1.25}
+.t-tag.free{background:var(--gold);color:#2E1419}
+.t-tag.paid{background:transparent;color:var(--cocoa-2);border:1px dashed rgba(67,31,37,.38);
+  font-size:10.5px;letter-spacing:.1em;padding:5px 10px}
+.t-name{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:15px;
+  line-height:1.2;color:var(--cocoa)}
+.t-meta{margin-top:4px;font-size:12.5px;color:var(--soft);line-height:1.35}
+.t-btn{margin-top:auto;display:block;width:100%;box-sizing:border-box;
+  text-decoration:none;text-align:center;font-family:"Libre Franklin";font-weight:600;
+  font-size:15px;line-height:1.2;padding:12px 10px;border-radius:999px;
+  margin-top:12px;transition:transform .22s ease,box-shadow .22s ease,background .22s ease}
+.t-free{background:linear-gradient(135deg,#7A2F38,#431F25);color:#FAF4E7;
+  box-shadow:0 10px 20px -10px rgba(67,31,37,.8)}
+.t-buy{background:var(--milk);color:var(--cocoa);border:2px solid rgba(67,31,37,.45)}
+.t-btn:hover{transform:translateY(-2px)}
+.t-buy:hover{background:#fff;border-color:var(--cocoa)}
+.t-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* the rotating book, now living further down the page */
+.stagewrap{margin-top:52px}
+/* .stage is flex-direction:column, so justify-content centres it VERTICALLY.
+   Inside the hero grid its column held it in place; standing on its own it
+   needs align-items to centre horizontally, or it hugs the left edge. */
+.stagewrap .stage{justify-self:auto;align-items:center;width:100%}
+
+@media (max-width:860px){
+  .hero{padding:26px 0 38px}
+  .lede{font-size:17.5px;line-height:1.45;max-width:38ch;margin-bottom:18px}
+  h1{font-size:clamp(31px,8vw,44px)}
+  .kicker{margin-bottom:12px}
+  .proof{margin:-2px 0 14px}
+  .duo{gap:12px}
+  .tile{padding:10px 8px 11px;border-radius:15px}
+  .t-shot{height:158px}
+  .t-btn{font-size:14px;padding:11px 8px;margin-top:10px}
+  .t-tag.paid{font-size:9.5px;letter-spacing:.07em;padding:4px 7px}
+  .proof{margin:16px 0 0;justify-content:center}
+  .t-tag{margin:9px 0 6px;font-size:11.5px;padding:4px 10px}
+  .t-name{font-size:13.5px}
+  .t-meta{font-size:11.5px}
+  .catch{padding:20px 18px 18px;border-radius:22px}
+  .catch label{margin-bottom:7px;font-size:14.5px}
+  input[type=email]{min-height:56px;padding:15px 18px;font-size:17px}
+  .btn{min-height:56px;padding:16px 26px;font-size:17.5px}
+  .small{font-size:14px;margin-top:12px}
+  .stagewrap{margin-top:38px}
+}
 /* inside the thirty days */
 .toc{padding:86px 0;background:linear-gradient(180deg,var(--cream-2),var(--cream))}
 .toc .hd{text-align:center;margin-bottom:12px}
@@ -346,33 +446,26 @@ body.inapp-on{padding-top:86px}
     <div class="grid">
       <div class="copy">
         <span class="kicker">A FREE DEVOTIONAL</span>
-        <div class="proof">
-          <span class="pfic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.52 2.52 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.83.42A2.52 2.52 0 0 0 2.4 7.2C2 8.79 2 12 2 12s0 3.21.4 4.8a2.52 2.52 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.83-.42a2.52 2.52 0 0 0 1.77-1.78C22 15.21 22 12 22 12s0-3.21-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg></span>
-          <p><b>5,000+ followers</b> across Instagram, Facebook and YouTube</p>
-        </div>
         <h1>For the one you keep praying for.</h1>
-        <p class="lede">Thirty days of prayers for your son or your daughter, written out word for word, so you never have to go hunting for them on a hard morning.</p>
+        <p class="lede">Thirty days of prayers for your son or your daughter, written out word for word.</p>
       </div>
 
-      <div class="stage" role="img" aria-label="30 Scripture-Based Prayers To Pray Over Your Children, a free thirty-day devotional by Evelyn Miller">
-        <div class="bookwrap">
-          <div class="book">
-            <div class="face f-front"></div>
-            <div class="face f-spine"><span class="t">30 SCRIPTURE-BASED PRAYERS</span><span class="a">EVELYN MILLER</span></div>
-            <div class="face f-fore"></div>
-            <div class="face f-top"></div>
-            <div class="face f-bottom"></div>
-            <div class="face f-back"><div class="bk">
-              <i></i>
-              <p>Thirty mornings of words already written down,<br>so that on the days you have nothing,<br>you do not have to find anything.</p>
-              <i></i>
-            </div></div>
-          </div>
-          <div class="bshadow"></div>
+
+
+      <div class="duo">
+        <div class="tile">
+          <span class="t-shot"><img src="../assets/cover-devotional.jpg" width="1200" height="1800" alt="30 Scripture-Based Prayers To Pray Over Your Children"></span>
+          <span class="t-tag free">FREE</span>
+          <span class="t-name">30 Scripture-Based Prayers</span>
+          <span class="t-meta">107 pages &middot; the devotional</span>
+          <a class="t-btn t-free" href="#em">Get it free</a>
         </div>
-        <div class="bmeta">
-          <h2>30 Scripture-Based Prayers<br><em>To Pray Over Your Children</em></h2>
-          <p>A thirty-day devotional &middot; 107 pages &middot; free PDF</p>
+        <div class="tile tile-paid">
+          <span class="t-shot"><img src="../assets/cover-adult-child.jpg" width="1200" height="1593" alt="What Your Adult Child Wishes You Knew"></span>
+          <span class="t-tag paid">YOU MIGHT WANT THIS TOO</span>
+          <span class="t-name">What Your Adult Child Wishes You Knew</span>
+          <span class="t-meta">203 pages &middot; the book</span>
+          <a class="t-btn t-buy" target="_blank" rel="noopener" href="https://selar.com/h9v900180y?add_to_cart=1">Buy &mdash; $26.99</a>
         </div>
       </div>
 
@@ -404,6 +497,10 @@ body.inapp-on{padding-top:86px}
         <input type="hidden" name="anticsrf" value="true">
         <p class="formerr" id="formerr" role="alert" hidden>That did not go through. Please try once more.</p>
         <p class="small">It is free and it stays free. One page a day, in large print. You can leave the list any time, and I will not pass your address to anybody.</p>
+        <div class="proof">
+          <span class="pfic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.52 2.52 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.83.42A2.52 2.52 0 0 0 2.4 7.2C2 8.79 2 12 2 12s0 3.21.4 4.8a2.52 2.52 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.83-.42a2.52 2.52 0 0 0 1.77-1.78C22 15.21 22 12 22 12s0-3.21-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg></span>
+          <p><b>5,000+ followers</b> across Instagram, Facebook and YouTube</p>
+        </div>
       </form>
     </div>
   </div>
@@ -430,6 +527,60 @@ body.inapp-on{padding-top:86px}
         <span class="tag">TO CARRY</span>
         <h3>One line to keep</h3>
         <p>Short enough to remember without writing it down, and enough to hold the day with.</p>
+      </div>
+    </div>
+
+    <div class="stagewrap">
+      <div class="stage" role="img" aria-label="30 Scripture-Based Prayers To Pray Over Your Children, a free thirty-day devotional by Evelyn Miller">
+        <div class="bookwrap">
+          <div class="book">
+            <div class="face f-front"></div>
+            <div class="face f-spine"><span class="t">30 SCRIPTURE-BASED PRAYERS</span><span class="a">EVELYN MILLER</span></div>
+            <div class="face f-fore"></div>
+            <div class="face f-top"></div>
+            <div class="face f-bottom"></div>
+            <div class="face f-back"><div class="bk">
+              <i></i>
+              <p>Thirty mornings of words already written down,<br>so that on the days you have nothing,<br>you do not have to find anything.</p>
+              <i></i>
+            </div></div>
+          </div>
+          <div class="bshadow"></div>
+        </div>
+        <div class="bmeta">
+          <h2>30 Scripture-Based Prayers<br><em>To Pray Over Your Children</em></h2>
+          <p>A thirty-day devotional &middot; 107 pages &middot; free PDF</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="bookoffer">
+  <div class="page">
+    <div class="bo-in">
+      <div class="bo-cov rise">
+        <img src="../assets/cover-adult-child.jpg" width="1200" height="1593" loading="lazy" decoding="async"
+             alt="What Your Adult Child Wishes You Knew, by Evelyn Millers">
+      </div>
+      <div class="rise">
+        <span class="bo-tag">MY NEWEST BOOK</span>
+        <h2>What Your Adult Child<br>Wishes You Knew</h2>
+        <p class="bo-sub">The biblical way to love, pray, and find peace with your child</p>
+        <p>The devotional gives you thirty mornings of prayers. This is the longer book underneath them &mdash; nine chapters on loving a grown child who has pulled away, and what thirty years of nights taught me about saying the thing once and saying it kind.</p>
+        <p>It will not promise you the phone call. It is about God&#x27;s peace whatever your child decides, and words that leave the door open for the day they are ready.</p>
+
+        <div class="bo-deal">
+          <svg viewBox="0 0 16 23" fill="currentColor" aria-hidden="true"><rect x="6.5" y="0" width="3" height="23" rx="1.2"/><rect x="0" y="6" width="16" height="3" rx="1.2"/></svg>
+          <p><b>Take the free devotional first.</b> The page it sends you to has this book for <b>$16.99</b> instead of $26.99 &mdash; ten dollars off, held for an hour.</p>
+        </div>
+
+        <div class="bo-acts">
+          <a class="btn" href="#em">Send me the devotional</a>
+          <a class="btn-2" target="_blank" rel="noopener" href="https://selar.com/h9v900180y?add_to_cart=1">Or buy it now &mdash; $26.99</a>
+        </div>
+        <span class="bo-note">203 pages &middot; Instant download &middot; One year to change your mind</span>
       </div>
     </div>
   </div>
@@ -679,14 +830,17 @@ body.inapp-on{padding-top:86px}
   } else {
     document.querySelectorAll('.rise').forEach(function(el){el.classList.add('in');});
   }
-  var jump=document.querySelector('a[href="#em"]');
-  if(jump) jump.addEventListener('click',function(e){
-    e.preventDefault();
-    var f=document.getElementById('em');
-    /* focus() must run inside the tap gesture or iOS refuses the keyboard,
-       and no keyboard means no AutoFill suggestion bar. Focus first, scroll after. */
-    f.focus();
-    f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+  /* There is more than one "send me the devotional" link on the page, so bind
+     every one of them. querySelector would only ever catch the first. */
+  document.querySelectorAll('a[href="#em"]').forEach(function(jump){
+    jump.addEventListener('click',function(e){
+      e.preventDefault();
+      var f=document.getElementById('em');
+      /* focus() must run inside the tap gesture or iOS refuses the keyboard,
+         and no keyboard means no AutoFill suggestion bar. Focus first, scroll after. */
+      f.focus();
+      f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    });
   });
 })();
 </script>
