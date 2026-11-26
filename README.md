@@ -8,6 +8,7 @@ them as-is.
 ```
 index.html                  store / landing page
 devotion/index.html         free devotional opt-in (MailerLite) + the book
+book/index.html             landing page for What Your Adult Child Wishes You Knew
 devotion/sent/index.html    thank-you page + timed offer
 assets/                     all images
 ```
@@ -18,7 +19,7 @@ assets/                     all images
 
 | Product | Price | Selar | Used on |
 |---|---|---|---|
-| What Your Adult Child Wishes You Knew | $26.99 | `h9v900180y` | store, and the expired state of the thank-you page |
+| What Your Adult Child Wishes You Knew | $26.99 | `h9v900180y` | store, `/book/` landing page, the devotional hero, and the expired state of the thank-you page |
 | ...same book, thank-you price | $16.99 | `051220678u` | thank-you page, first hour only |
 | God Heals | $9.99 | `16176qb598` | store |
 | Feel Younger Again | $14.99 | `feel_younger_again` | store |
@@ -101,11 +102,19 @@ bigger frame and it detaches from the page edges.
 the characters either side of the bundle block and left a stray `v>` printing
 on the page. Edit by exact string, and run a parser over the result.
 
-**The devotional hero shows both books above the fold.** Free devotional and
-the paid book sit side by side, each with its own button, and both clear the
-fold at 375x667 as well as 390x844. The hero used to be 1493px tall with the
-email field at 1157px — nobody saw the signup without scrolling. Anything
-added above the tiles pushes them off again; measure, don't eyeball.
+**The devotional hero is sized one screen per book.** The free devotional
+sits above the paid book, each in its own card, and each card is built to fit
+inside a single viewport — measured at 541px and 566px on a 375x667 iPhone SE,
+577 and 603 on a 390x844 iPhone 13. The cover height is `min(44svh, 330px)`,
+which is what keeps them inside the fold; raise it and the cards stop fitting.
+The hero was once 1493px tall with the email field at 1157px, so nobody saw
+the signup at all. Measure after changing this, don't eyeball it.
+
+**The "Get it free" scroll deliberately stops short of the form.** It focuses
+the email field with `focus({preventScroll: true})` and then scrolls by hand to
+`form.top - min(210, 26% of viewport)`, so a slice of the book stays on screen
+while they type. A plain `focus()` yanks the field to the top of the screen and
+throws the book off, which is why preventScroll is there — don't remove it.
 
 **`.stage` centres vertically, not horizontally.** It is
 `flex-direction: column`, so `justify-content: center` does nothing for
