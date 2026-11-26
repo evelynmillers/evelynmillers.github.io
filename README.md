@@ -104,9 +104,15 @@ on the page. Edit by exact string, and run a parser over the result.
 
 **The devotional hero is sized one screen per book.** The free devotional
 sits above the paid book, each in its own card, and each card is built to fit
-inside a single viewport — measured at 541px and 566px on a 375x667 iPhone SE,
-577 and 603 on a 390x844 iPhone 13. The cover height is `min(44svh, 330px)`,
-which is what keeps them inside the fold; raise it and the cards stop fitting.
+inside a single viewport — measured at 627px and 655px on a 375x667 iPhone SE,
+774 and 740 on a 390x844 iPhone 13.
+
+The cover runs **edge to edge**: `.t-shot` is `calc(100% + 36px)` wide with
+`margin: 0 -18px`, cancelling the card's own padding, and the card has
+`overflow:hidden`. On a phone the cover is capped by WIDTH, not height — which
+is why raising a height value alone does nothing. Short screens fall back to a
+height cap (`min(62svh,500px)` under `max-height:820px`,
+`min(58svh,440px)` under `max-height:700px`) so a whole card still fits.
 The hero was once 1493px tall with the email field at 1157px, so nobody saw
 the signup at all. Measure after changing this, don't eyeball it.
 
